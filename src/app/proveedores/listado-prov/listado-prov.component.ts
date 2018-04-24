@@ -66,7 +66,7 @@ export class ListadoProvComponent implements OnInit {
                   }, 2500);
                 })
     setTimeout(()=>{
-      this.mensaje = 'Error de conexión con el servidor'
+      this.mensaje = 'Error de conexión con el servidor';
     })
   }
 
