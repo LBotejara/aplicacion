@@ -249,3 +249,13 @@ form.fila:first-child(1) {
 .fila.editable select {
     width: 100%;
 }
+
+.paginacion {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.paginacion button {
+    margin: 10px;
+}

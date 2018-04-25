@@ -84,4 +84,14 @@
       </td>
     </tr>
   </table>
+  <div class="paginacion">
+    <button class="btn btn-primary"
+            (click)="setDesde(-5)">     <!-- restar 5 para pasar hacia atrás -->
+      <i class="fas fa-arrow-circle-left"></i>
+    </button>
+    <button class="btn btn-primary"
+            (click)="setDesde(5)">     <!-- sumar 5 para pasar hacia delante -->
+      <i class="fas fa-arrow-circle-right"></i>
+    </button>
+  </div>
 </div>

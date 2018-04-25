@@ -16,8 +16,8 @@ export class ProveedoresService {
                 this.token = autenticacionService.token;
               }
 
-  getProveedores(){
-    let url = 'http://localhost:3000/proveedor';
+  getProveedores(desde){
+    let url = 'http://localhost:3000/proveedor?desde=' + desde;
     return this.http.get(url)
                   .map( (resp:any) => {
                     return resp;

@@ -22,6 +22,8 @@ export class ListadoProvComponent implements OnInit {
   mostrarAlerta:boolean = false;
   proveedores:any;
   id:string;
+  desde:number = 0;
+  totales:number;
 
   constructor(private proveedoresService: ProveedoresService,
               private autenticacionService: AutenticacionService) { }
@@ -35,12 +37,25 @@ export class ListadoProvComponent implements OnInit {
   }
 
   cargarProveedores(){
-    this.proveedoresService.getProveedores()
+    this.proveedoresService.getProveedores(this.desde)
                .subscribe((resp:any)=>{
                   this.proveedores = resp.proveedores;
+                  this.totales = resp.totales;
                }, error => {
                  console.log(error);
                })
+  }
+
+  setDesde(valor){
+    var desde = this.desde + valor;
+    if (desde >= this.totales){
+      return;
+    } else if (desde < 0) {
+      return;
+    } else {
+      this.desde += valor;
+      this.cargarProveedores();   // sumando el valor para pasar hacia delante
+    }
   }
 
   obtenerId(id){
