@@ -13,12 +13,14 @@ export class AutenticacionService {
   token:string;
   nombre:string;
   rol:string;
-  id:string;
-  fecha:string;
+  ultimoLogin:any;
+  
 
   constructor(private http: HttpClient,
               private router: Router) {
     this.cargarCredenciales();
+    this.cargarInicioSesion();
+    console.log(this.ultimoLogin);
   }
 
   getUsuarios(){
@@ -58,7 +60,7 @@ export class AutenticacionService {
     return this.http.post(url, usuario)
                   .map( (resp:any) => {
                     this.guardarCredenciales(resp.token, resp.nombre, resp.rol);
-                    this.cargarCredenciales();
+                    this.guardarInicioSesion();
                     return resp;
                   });
   }
@@ -70,6 +72,12 @@ export class AutenticacionService {
     this.token = token;
     this.nombre = nombre;
     this.rol = rol;
+  }
+
+  guardarInicioSesion(){
+    var inicioSesion = new Date();
+    localStorage.setItem('ultimoLogin', JSON.stringify(inicioSesion));
+    this.ultimoLogin = inicioSesion;
   }
 
   cargarCredenciales(){
@@ -84,6 +92,14 @@ export class AutenticacionService {
     }
   }
 
+  cargarInicioSesion(){
+    if(localStorage.getItem('ultimoLogin')){
+      this.ultimoLogin = JSON.parse (localStorage.getItem('ultimoLogin'))
+    } else {
+      this.ultimoLogin = '';
+    }
+  }
+
   isLogged(){
     return ( this.token.length > 0 ) ? true : false;
   }
@@ -92,9 +108,12 @@ export class AutenticacionService {
     localStorage.removeItem('token');
     localStorage.removeItem('nombre');
     localStorage.removeItem(' rol');
+    localStorage.removeItem(' id');
+    localStorage.removeItem(' ultimoLogin');
     this.token = '';
     this.nombre = '';
     this.rol = '';
+    this.ultimoLogin = '';
     this.router.navigate(['/']);
   }
 

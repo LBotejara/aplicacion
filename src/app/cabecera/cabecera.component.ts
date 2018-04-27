@@ -23,6 +23,7 @@ export class CabeceraComponent implements OnInit {
     this.sesion = {
       nombre:this.autenticacionService.nombre,
       logout: new Date,
+  
     }
     this.autenticacionService.postSesion(this.sesion)
                   .subscribe((resp:any)=>{
