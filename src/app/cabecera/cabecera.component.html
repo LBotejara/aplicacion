@@ -11,10 +11,11 @@
           <i class="fas fa-user-circle"></i>
           {{autenticacionService.nombre}}
         </span>
+        
         <button *ngIf="!getLogged()" class="btn btn-primary" routerLink="/login">
           Iniciar sesión
         </button>
-        <button *ngIf="getLogged()" class="btn btn-primary" (click)="autenticacionService.logout()">
+        <button *ngIf="getLogged()" class="btn btn-primary" (click)= "crearSesion(); autenticacionService.logout();">
           Cerrar sesión
         </button>
       </div>

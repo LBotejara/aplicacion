@@ -38,6 +38,9 @@
 .naranja { background-color: #ca6242; }
 .naranja:hover { background-color: #dd6b48; }
 .naranja span {color: #b8583b;}
+.lila { background-color: #ca42b8; }
+.lila:hover { background-color: #dd48d1; }
+.lila span {color: #b83bb8;}
 
 .titulo {
     display: flex;
@@ -177,11 +180,11 @@
     border-bottom: 1px solid lightgray;
 }
 
-.fila .campo:nth-child(1) { width: 30%; }
+.fila .campo:nth-child(1) { width: 20%; }
 .fila .campo:nth-child(2) { width: 30%; }
 .fila .campo:nth-child(3) { width: 30%; }
 .fila .campo:nth-child(4) {
-    width: 10%;
+    width: 20%;
     border-bottom: none;
 }
 

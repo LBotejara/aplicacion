@@ -14,6 +14,7 @@ export class AutenticacionService {
   nombre:string;
   rol:string;
   id:string;
+  fecha:string;
 
   constructor(private http: HttpClient,
               private router: Router) {
@@ -122,6 +123,22 @@ export class AutenticacionService {
     } else {
       return false;
     }
+  }
+
+  getSesiones(nombre){
+    let url = 'http://localhost:3000/sesion?nombre='+nombre;
+    return this.http.get(url)
+                  .map( (resp:any) => {
+                    return resp;
+                  });
+  }
+
+  postSesion(sesion){
+    let url = "http://localhost:3000/sesion";
+    return this.http.post(url, sesion)
+                  .map( (resp:any) => {
+                    return resp;
+                  });
   }
 
 }

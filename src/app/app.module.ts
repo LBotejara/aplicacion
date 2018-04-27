@@ -30,6 +30,7 @@ import { EditarClteComponent } from './clientes/editar-clte/editar-clte.componen
 import { ListadoClteComponent } from './clientes/listado-clte/listado-clte.component';
 import { AutenticacionGuard } from './servicios/autenticacion.guard';
 import { ListadoUsuariosComponent } from './autenticacion/listado-usuarios/listado-usuarios.component';
+import { SesionesComponent } from './autenticacion/sesiones/sesiones.component';
 
 
 const rutas:Routes = [
@@ -37,6 +38,7 @@ const rutas:Routes = [
   {path: 'registro' , component: RegistroComponent},
   {path: 'login' , component: LoginComponent},
   {path: 'listado-usuarios', component: ListadoUsuariosComponent, canActivate: [AutenticacionGuard]},
+  {path: 'sesiones/:nombre', component: SesionesComponent, canActivate: [AutenticacionGuard]},
   {path: 'compras', component: ComprasComponent, canActivate: [AutenticacionGuard]},
   {path: 'listado-proveedores', component: ListadoProvComponent, canActivate: [AutenticacionGuard]},
   {path: 'crear-proveedor', component: CrearProvComponent, canActivate: [AutenticacionGuard]},
@@ -72,6 +74,7 @@ const rutas:Routes = [
     EditarClteComponent,
     ListadoClteComponent,
     ListadoUsuariosComponent,
+    SesionesComponent,
    
 
   ],
