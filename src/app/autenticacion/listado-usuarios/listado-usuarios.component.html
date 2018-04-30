@@ -55,6 +55,7 @@
   </div>
   <div class="container">
     <div class="cabecera">
+      <div class="campo"><p>Online</p></div>
       <div class="campo">
         <p>Nombre</p>
       </div>
@@ -67,7 +68,7 @@
       <div class="campo"></div>
     </div>
     <hr>
-    <div *ngFor="let usuario of usuarios">
+    <div *ngFor="let usuario of usuarios; let i=index">
       <form class="fila editable" [formGroup]="editarUsuarioForm" *ngIf="usuario._id === editarFila">
         <div class="campo">
           <input type="text" formControlName="nombre" [(ngModel)]="usuario.nombre">
@@ -99,6 +100,14 @@
         </div>
       </form>
       <div class="fila" *ngIf="usuario._id !== editarFila">
+        <div class="campo">
+          <span *ngIf="online[i]">
+            <i class="fas fa-check-circle valido"></i>
+          </span>
+          <span *ngIf="!online[i]">
+              <i class="fas fa-times-circle no-valido"></i>
+            </span>
+        </div>
         <div class="campo">{{usuario.nombre}}</div>
         <div class="campo">{{usuario.email}}</div>
         <div class="campo">{{usuario.rol}}</div>

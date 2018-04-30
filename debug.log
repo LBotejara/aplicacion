@@ -1,0 +1,4 @@
+[0430/120406.987:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0430/120406.988:ERROR:exception_snapshot_win.cc(88)] thread ID 4164 not found in process
+[0430/120406.988:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed
+[0430/120406.988:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Se intentó obtener acceso a un proceso que está cerrándose. (0xc000010a)

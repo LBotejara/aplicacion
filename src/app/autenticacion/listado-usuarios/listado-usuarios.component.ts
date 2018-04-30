@@ -35,6 +35,7 @@ export class ListadoUsuariosComponent implements OnInit {
   mensaje:string = "Error de conexión al servidor";
   editarFila: String;
   id:string;
+  online:any = [];
 
   constructor(private autenticacionService: AutenticacionService,
               private cuf: FormBuilder,
@@ -72,10 +73,22 @@ export class ListadoUsuariosComponent implements OnInit {
     this.autenticacionService.getUsuarios()
             .subscribe((res:any)=>{
               this.usuarios = res.usuarios;
-            }, (error) =>{
-              console.log(error);
-            })
-          }
+              this.usuarios.forEach(usuario => {
+                this.autenticacionService.getSesiones(usuario.nombre)
+                .subscribe((resp:any)=>{
+                  if(resp.sesiones.length % 2 !==0) {
+                    this.online.push(true);
+                  } else {
+                    this.online.push(false);
+                  }
+                   }, (error) =>{
+                    console.log(error);
+                  })
+                })
+              }, (error)=>{
+                console.log(error);
+              })
+            }
     
   crearUsuario(){
     this.enviando = true;
