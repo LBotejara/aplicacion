@@ -1,0 +1,104 @@
+<div class="barra-fija">
+    <div title="Clientes" 
+          routerLink="/listado-clientes">
+        <i class="fas fa-address-book"></i>
+    </div>
+    <div title="Presupuestos" 
+          routerLink="/listado-presupuestos">
+        <i class="fas fa-money-bill-alt"></i>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
+        <li class="breadcrumb-item"><a routerLink="/listado-clientes">Clientes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Editar cliente</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="col-md-12 titulo">
+    <span>Editar cliente</span>
+    <button class="btn btn-primary"
+            routerLink="/listado-clientes">
+      <strong>Volver</strong>
+    </button>
+  </div>
+  <div class="col-md-8 offset-md-2 col-12">
+    <div class="formulario">
+      <form [formGroup]="clienteForm" (ngSubmit)="editarCliente()">
+        <div class="form-group">
+          <input type="text" class="form-control"
+                  formControlName="nombre"
+                  placeholder="Nombre"
+                  [(ngModel)]="cliente.nombre">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control"
+                  formControlName="cif"
+                  placeholder="CIF"
+                  [(ngModel)]="cliente.cif">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control"
+                  formControlName="domicilio"
+                  placeholder="Dirección"
+                  [(ngModel)]="cliente.domicilio">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control"
+                 formControlName="cp"
+                  placeholder="Código Postal"
+                  [(ngModel)]="cliente.cp">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control"
+                formControlName="localidad"
+                placeholder="Localidad"
+                [(ngModel)]="cliente.localidad">
+        </div>
+        <div class="form-group">
+          <select class="form-control"
+                  formControlName="provincia"
+                  [(ngModel)]="cliente.provincia">
+            <option *ngFor="let provincia of provincias"
+                  [ngValue]="provincia">
+                  {{provincia}} 
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control"
+                  formControlName="telefono"
+                  placeholder="Teléfono"
+                  [(ngModel)]="cliente.telefono">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control"
+                  formControlName="email"
+                  placeholder="Email"
+                  [(ngModel)]="cliente.email">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control"
+                  formControlName="contacto"
+                  placeholder="Contacto"
+                  [(ngModel)]="cliente.contacto">
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <span>Guardar cambios</span>
+          <!-- <span *ngIf="enviando">
+            <i class="fas fa-spinner fa-pulse"></i>
+          </span> -->
+        </button>
+        <button routerLink="/listado-clientes" 
+                class="btn btn-danger">
+            Cancelar
+        </button>
+      </form>
+      <!-- <p class="alert alert-warning"
+         [@alerta]="estadoAlerta">{{mensaje}}</p> -->
+    </div>
+  </div>
+  

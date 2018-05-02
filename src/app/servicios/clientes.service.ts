@@ -8,7 +8,11 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class ClientesService {
 
-  constructor(private http: HttpClient) { }
+  token:string;
+  
+    constructor(private http: HttpClient) {
+                 
+                }
 
   getClientes(){
     let url = 'http://localhost:3000/clientes';
@@ -27,7 +31,7 @@ export class ClientesService {
   }
 
   postCliente(cliente){
-    let url = "http://localhost:3000/cliente";
+    let url = "http://localhost:3000/clientes";
     return this.http.post(url, cliente)
                   .map( (resp:any) => {
                     console.log(resp)
@@ -36,7 +40,7 @@ export class ClientesService {
   }
 
   putCliente(id, cliente){
-    let url = 'http://localhost:3000/cliente/';
+    let url = 'http://localhost:3000/clientes/';
     return this.http.put(url+id, cliente)
                   .map( (resp:any) => {
                     return resp;
@@ -44,7 +48,7 @@ export class ClientesService {
   }
 
   deleteCliente(id){
-    let url = 'http://localhost:3000/cliente/';
+    let url = 'http://localhost:3000/clientes/';
     return this.http.delete(url+id)
                     .map( (resp:any) => {
                       return resp;

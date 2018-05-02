@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
-  selector: 'app-crear-clte',
-  templateUrl: './crear-clte.component.html',
-  styleUrls: ['./crear-clte.component.css'],
+  selector: 'app-crear-clientes',
+  templateUrl: './crear-clientes.component.html',
+  styleUrls: ['./crear-clientes.component.css'],
   animations: [
     trigger('alerta',[
       state('show', style({ opacity: 1})),
@@ -17,7 +17,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ])
   ]
 })
-export class CrearClteComponent implements OnInit {
+export class CrearClientesComponent implements OnInit {
 
   @ViewChild('cif') cifRef: ElementRef;
 
@@ -34,12 +34,12 @@ export class CrearClteComponent implements OnInit {
   mostrarAlerta:boolean = false;
   enviando:boolean = false;
 
-  constructor(private pf: FormBuilder,
+  constructor(private cf: FormBuilder,
               private clientesService: ClientesService,
               private router: Router) { }
 
   ngOnInit() {
-    this.clienteForm = this.pf.group({
+    this.clienteForm = this.cf.group({
       nombre: null,
       cif: null,
       domicilio: null,
@@ -56,10 +56,10 @@ export class CrearClteComponent implements OnInit {
    return this.mostrarAlerta ? 'show' : 'hide';
  }
 
- crearClte(){
+ crearCliente(){
     this.mostrarAlerta = false;
     this.enviando = true;
-    this.cliente = this.guardarClte();
+    this.cliente = this.guardarCliente();
     this.clientesService.postCliente(this.cliente)
                     .subscribe((resp:any)=>{
                       this.router.navigate(['/listado-clientes']);
@@ -73,8 +73,8 @@ export class CrearClteComponent implements OnInit {
                       }
                     });
   }
-  guardarClte(){
-    const guardarClte = {
+  guardarCliente(){
+    const guardarCliente = {
       nombre: this.clienteForm.get('nombre').value,
       cif: this.clienteForm.get('cif').value,
       domicilio: this.clienteForm.get('domicilio').value,
@@ -85,9 +85,7 @@ export class CrearClteComponent implements OnInit {
       email: this.clienteForm.get('email').value,
       contacto: this.clienteForm.get('contacto').value
     }
-    return guardarClte;
+    return guardarCliente;
   }
 
-
 }
-

@@ -25,12 +25,13 @@ import { PresupuestosService } from './servicios/presupuestos.service';
 import { CrearPptoComponent } from './presupuestos/crear-ppto/crear-ppto.component';
 import { EditarPptoComponent } from './presupuestos/editar-ppto/editar-ppto.component';
 import { ListadoPptoComponent } from './presupuestos/listado-ppto/listado-ppto.component';
-import { CrearClteComponent } from './clientes/crear-clte/crear-clte.component';
-import { EditarClteComponent } from './clientes/editar-clte/editar-clte.component';
-import { ListadoClteComponent } from './clientes/listado-clte/listado-clte.component';
+import { CrearClientesComponent } from './clientes/crear-clientes/crear-clientes.component';
+import { EditarClientesComponent } from './clientes/editar-clientes/editar-clientes.component';
+import { ListadoClientesComponent } from './clientes/listado-clientes/listado-clientes.component';
 import { AutenticacionGuard } from './servicios/autenticacion.guard';
 import { ListadoUsuariosComponent } from './autenticacion/listado-usuarios/listado-usuarios.component';
 import { SesionesComponent } from './autenticacion/sesiones/sesiones.component';
+import { VentasComponent } from './ventas/ventas.component';
 
 
 const rutas:Routes = [
@@ -40,9 +41,13 @@ const rutas:Routes = [
   {path: 'listado-usuarios', component: ListadoUsuariosComponent, canActivate: [AutenticacionGuard]},
   {path: 'sesiones/:nombre', component: SesionesComponent, canActivate: [AutenticacionGuard]},
   {path: 'compras', component: ComprasComponent, canActivate: [AutenticacionGuard]},
+  {path: 'ventas', component: VentasComponent, canActivate: [AutenticacionGuard]},
   {path: 'listado-proveedores', component: ListadoProvComponent, canActivate: [AutenticacionGuard]},
   {path: 'crear-proveedor', component: CrearProvComponent, canActivate: [AutenticacionGuard]},
   {path: 'editar-proveedor/:id', component: EditarProvComponent, canActivate: [AutenticacionGuard]},
+  {path: 'listado-clientes', component: ListadoClientesComponent, canActivate: [AutenticacionGuard]},
+  {path: 'crear-cliente', component: CrearClientesComponent, canActivate: [AutenticacionGuard]},
+  {path: 'editar-cliente/:id', component: EditarClientesComponent, canActivate: [AutenticacionGuard]},
   {path: 'listado-facturas', component: ListadoFactComponent, canActivate: [AutenticacionGuard]},
   {path: 'crear-factura', component: CrearFactComponent, canActivate: [AutenticacionGuard]},
   {path: 'editar-factura/:id', component: EditarFactComponent, canActivate: [AutenticacionGuard]},
@@ -70,11 +75,12 @@ const rutas:Routes = [
     CrearPptoComponent,
     EditarPptoComponent,
     ListadoPptoComponent,
-    CrearClteComponent,
-    EditarClteComponent,
-    ListadoClteComponent,
+    CrearClientesComponent,
+    EditarClientesComponent,
+    ListadoClientesComponent,
     ListadoUsuariosComponent,
     SesionesComponent,
+    VentasComponent,
    
 
   ],
