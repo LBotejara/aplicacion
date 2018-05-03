@@ -29,6 +29,14 @@ export class ClientesService {
                     return resp;
                   });
   }
+
+  getClientesNombreLocalidad(consulta){
+    let url = 'http://localhost:3000/clientes/mixto/' + consulta.nombre + '/' + consulta.localidad;
+    return this.http.get(url)
+                  .map( (resp:any) => {
+                    return resp;
+                  });
+  }
   
   getClientesId(id){
     let url = 'http://localhost:3000/clientes/';

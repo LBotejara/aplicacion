@@ -1,50 +1,68 @@
 <div class="barra-fija">
-  <div title="Clientes" 
-        routerLink="/listado-clientes">
-      <i class="fas fa-address-book"></i>
+  <div title="Clientes" routerLink="/listado-clientes">
+    <i class="fas fa-address-book"></i>
   </div>
-  <div title="Presupuestos" 
-        routerLink="/listado-presupuestos">
-      <i class="fas fa-money-bill-alt"></i>
+  <div title="Presupuestos" routerLink="/listado-presupuestos">
+    <i class="fas fa-money-bill-alt"></i>
   </div>
 </div>
 <div class="col-md-12">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-      <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
+      <li class="breadcrumb-item">
+        <a routerLink="/inicio">Inicio</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/ventas">Ventas</a>
+      </li>
       <li class="breadcrumb-item active" aria-current="page">Clientes</li>
     </ol>
   </nav>
 </div>
 <div class="col-md-12 titulo">
   <span>Clientes</span>
-  <button class="btn btn-primary"
-          routerLink="/crear-cliente">
-      <i class="fas fa-plus-circle"></i>
+  <button class="btn btn-primary" routerLink="/crear-cliente">
+    <i class="fas fa-plus-circle"></i>
   </button>
 </div>
 <div class="col-md-12">
   <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input"
-            (click)="buscarPorNombre()" checked>
+    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" (click)="buscarPorNombre()"
+      checked>
     <label class="custom-control-label" for="customRadioInline1">Buscar por nombre</label>
   </div>
   <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input"
-            (click)="buscarPorLocalidad()">
+    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" (click)="buscarPorLocalidad()">
     <label class="custom-control-label" for="customRadioInline2">Buscar por localidad</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input" (click)="buscarPorLocalidadNombre()">
+    <label class="custom-control-label" for="customRadioInline3">Buscar por nombre y localidad</label>
   </div>
 </div>
 <div class="col-md-12 buscador" *ngIf="verBuscadorNombre">
-  <input type="search" class="form-control"
-        placeholder="Complete el nombre"
-        [formControl]="buscador">
+  <input type="search" class="form-control" placeholder="Complete el nombre" [formControl]="buscador">
 </div>
 <div class="col-md-12 buscador" *ngIf="verBuscadorLocalidad">
-  <input type="search" class="form-control"
-        placeholder="Complete la localidad"
-        [formControl]="buscadorLocalidad">
+  <input type="search" class="form-control" placeholder="Complete la localidad" [formControl]="buscadorLocalidad">
+</div>
+<div class="col-md-12 buscador" *ngIf="verBuscadorNombreLocalidad">
+  <form [formGroup]="buscadorLocalidadNombre" (ngSubmit)="crearConsulta()">
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Localidad" formControlName="localidad">
+
+  </div>
+  <div class="col">
+    <button type="submit" class="btn btn-primay">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+  </div>
+</form>
 </div>
 <div class="col-md-12 resultados">
   <div *ngIf="buscando" class="spinner">
@@ -59,4 +77,3 @@
   <p *ngFor="let cliente of clientes" routerLink="/editar-cliente/{{cliente._id}}">{{cliente.nombre}} | {{cliente.localidad}}</p>
   <p *ngIf="mensaje">No se encontraron coincidencias.</p>
 </div>
-
