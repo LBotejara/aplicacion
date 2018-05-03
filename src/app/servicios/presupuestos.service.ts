@@ -34,7 +34,7 @@ export class PresupuestosService {
                   });
   }
 
-  putPresupuestp(id, presupuesto){
+  putPresupuesto(id, presupuesto){
     let url = 'http://localhost:3000/presupuesto/';
     return this.http.put(url+id, presupuesto)
                   .map( (resp:any) => {

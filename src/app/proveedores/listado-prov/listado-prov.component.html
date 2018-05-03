@@ -86,17 +86,32 @@
   </table>
   <div class="paginacion">
     <button class="btn btn-primary"
-            (click)="setDesde(-5);retrocederBotones();">     <!-- restar 5 para pasar hacia atrás -->
-      <i class="fas fa-arrow-circle-left"></i>
-    </button>
-    <button *ngFor="let boton of botones" 
-            class="btn btn-primary"
-            (click)="setDesde(boton*5-5)">  
-            {{boton}}
+            [ngClass]="{'oculto': desde < 25}"
+            (click)="retrocederTramoBotones();">     <!-- restar 5 para pasar hacia atrás -->
+      <i class="fas fa-angle-double-left"></i>
     </button>
     <button class="btn btn-primary"
+            [ngClass]="{'oculto': desde === 0}"
+            (click)="setDesde(-5); retrocederBotones()">     <!-- restar 5 para pasar hacia atrás -->
+      <i class="fas fa-angle-left"></i>
+    </button>
+    <div  *ngFor="let boton of botones">
+    <button *ngIf="boton <= (numeroBotones + 1)" 
+            class="btn btn-primary"
+            [ngClass]="{'btn-outline-primary': boton -1 === desde / 5}"
+            (click)="setDesde(boton*5-5)">  
+      {{boton}}
+    </button>
+  </div>
+    <button class="btn btn-primary"
+            [ngClass]="{'oculto': desde >= (totales -5)}"
             (click)="setDesde(5);avanzarBotones();">     <!-- sumar 5 para pasar hacia delante -->
-      <i class="fas fa-arrow-circle-right"></i>
+      <i class="fas fa-angle-right"></i>
+    </button>
+    <button class="btn btn-primary"
+            [ngClass]="{'oculto': desde >= (totales -25)}"
+            (click)="avanzarTramoBotones()">
+      <i class="fas fa-angle-double-right"></i>
     </button>
   </div>
 </div>

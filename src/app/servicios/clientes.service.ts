@@ -14,8 +14,16 @@ export class ClientesService {
                  
                 }
 
-  getClientes(){
-    let url = 'http://localhost:3000/clientes';
+  getClientes(nombre){
+    let url = 'http://localhost:3000/clientes/nombre/' + nombre;
+    return this.http.get(url)
+                  .map( (resp:any) => {
+                    return resp;
+                  });
+  }
+
+  getClientesLocalidad(localidad){
+    let url = 'http://localhost:3000/clientes/localidad/' + localidad;
     return this.http.get(url)
                   .map( (resp:any) => {
                     return resp;

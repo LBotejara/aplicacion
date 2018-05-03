@@ -22,9 +22,9 @@ import { AutenticacionService } from './servicios/autenticacion.service';
 import { LoginComponent } from './autenticacion/login/login.component';
 import { ClientesService } from './servicios/clientes.service';
 import { PresupuestosService } from './servicios/presupuestos.service';
-import { CrearPptoComponent } from './presupuestos/crear-ppto/crear-ppto.component';
-import { EditarPptoComponent } from './presupuestos/editar-ppto/editar-ppto.component';
-import { ListadoPptoComponent } from './presupuestos/listado-ppto/listado-ppto.component';
+import { CrearPresComponent } from './presupuestos/crear-pres/crear-pres.component';
+import { EditarPresComponent } from './presupuestos/editar-pres/editar-pres.component';
+import { ListadoPresComponent } from './presupuestos/listado-pres/listado-pres.component';
 import { CrearClientesComponent } from './clientes/crear-clientes/crear-clientes.component';
 import { EditarClientesComponent } from './clientes/editar-clientes/editar-clientes.component';
 import { ListadoClientesComponent } from './clientes/listado-clientes/listado-clientes.component';
@@ -51,9 +51,9 @@ const rutas:Routes = [
   {path: 'listado-facturas', component: ListadoFactComponent, canActivate: [AutenticacionGuard]},
   {path: 'crear-factura', component: CrearFactComponent, canActivate: [AutenticacionGuard]},
   {path: 'editar-factura/:id', component: EditarFactComponent, canActivate: [AutenticacionGuard]},
-  {path: 'listado-presupuestos', component: ListadoPptoComponent, canActivate: [AutenticacionGuard]},
-  {path: 'crear-presupuesto', component: CrearPptoComponent, canActivate: [AutenticacionGuard]},
-  {path: 'editar-presupuesto/:id', component: EditarPptoComponent},
+  {path: 'listado-presupuestos', component: ListadoPresComponent, canActivate: [AutenticacionGuard]},
+  {path: 'crear-presupuesto', component: CrearPresComponent, canActivate: [AutenticacionGuard]},
+  {path: 'editar-presupuesto/:id', component: EditarPresComponent},
   {path: '**', component: InicioComponent}
 ]
 
@@ -72,9 +72,9 @@ const rutas:Routes = [
     EditarFactComponent,
     RegistroComponent,
     LoginComponent,
-    CrearPptoComponent,
-    EditarPptoComponent,
-    ListadoPptoComponent,
+    CrearPresComponent,
+    EditarPresComponent,
+    ListadoPresComponent,
     CrearClientesComponent,
     EditarClientesComponent,
     ListadoClientesComponent,
