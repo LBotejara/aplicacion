@@ -32,6 +32,8 @@ import { AutenticacionGuard } from './servicios/autenticacion.guard';
 import { ListadoUsuariosComponent } from './autenticacion/listado-usuarios/listado-usuarios.component';
 import { SesionesComponent } from './autenticacion/sesiones/sesiones.component';
 import { VentasComponent } from './ventas/ventas.component';
+import { CrearArticuloComponent } from './articulos/crear-articulo/crear-articulo.component';
+import { ListadoArticulosComponent } from './articulos/listado-articulos/listado-articulos.component';
 
 
 const rutas:Routes = [
@@ -54,6 +56,8 @@ const rutas:Routes = [
   {path: 'listado-presupuestos', component: ListadoPresComponent, canActivate: [AutenticacionGuard]},
   {path: 'crear-presupuesto', component: CrearPresComponent, canActivate: [AutenticacionGuard]},
   {path: 'editar-presupuesto/:id', component: EditarPresComponent},
+  {path: 'listado-articulos', component: ListadoArticulosComponent, canActivate: [AutenticacionGuard]},
+  {path: 'crear-articulo', component: CrearArticuloComponent, canActivate: [AutenticacionGuard]},
   {path: '**', component: InicioComponent}
 ]
 
@@ -81,6 +85,8 @@ const rutas:Routes = [
     ListadoUsuariosComponent,
     SesionesComponent,
     VentasComponent,
+    CrearArticuloComponent,
+    ListadoArticulosComponent,
    
 
   ],

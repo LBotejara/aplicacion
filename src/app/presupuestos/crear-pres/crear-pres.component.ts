@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { PresupuestosService } from '../../servicios/presupuestos.service';
+import { ClientesService } from '../../servicios/clientes.service';
 
 
 @Component({
@@ -12,97 +13,71 @@ export class CrearPresComponent implements OnInit {
 
   formPre: FormGroup;
   presupuesto:any;
-  base:number;
-  tipo:number;
-  importe:number;
-  total:number;
-  irpf:number;
-  retencion:boolean = false;
+  clientes:any;
+
 
   constructor(private fp: FormBuilder,
-              private presupuestosService: PresupuestosService) { }
+              private presupuestosService: PresupuestosService,
+              private clientesService: ClientesService) { }
 
   ngOnInit() {
-    this.iniciarFormulario();
-  }
-
-
-  iniciarFormulario(){
+    this.cargarClientes();
     this.formPre = this.fp.group({
-      cliente: [ null , Validators.required ],
-      cif: ['' , [Validators.required, Validators.minLength(9)]],
+      cliente: null,
       fecha: null,
-      concepto: null,
-      base: [null, [Validators.required, Validators.max(100000)]],
-      retencion: false,
-      tipo: 0.21,
-      irpf: this.formatearMoneda(0),
-      importe: this.formatearMoneda(0),
-      total: this.formatearMoneda(0)
-    });
+      items: this.fp.array([
+        this.initItem()
+      ]),
+      suma: null
+    })
     this.detectarCambios();
   }
 
-  redondear(valor){
-    var valor;
-    if(valor < 0) {
-      var resultado = Math.round(-valor*100)/100 * -1;
-    } else {
-        var resultado = Math.round(valor*100)/100;
-    }
-    return resultado;
+  initItem(){
+    return this.fp.group({
+      articulo: null,
+      importe: null,
+      cantidad: null,
+      precio: null
+    })
   }
 
-  formatearMoneda(valor){
-    var resultado = new Intl.NumberFormat("es-ES",{style: "currency", currency: "EUR"})
-                      .format(valor);
-    return resultado;
+  addItem(){
+    const control = <FormArray>this.formPre.controls['items'];
+    control.push(this.initItem());
+  }
+
+  removeItem(i){
+    const control = <FormArray>this.formPre.controls['items'];
+    control.removeAt(i);
+  }
+
+  cargarClientes(){
+    this.clientesService.getTodosClientes()
+                .subscribe((resp:any)=>{
+                  this.clientes = resp.clientes
+                }, (error)=>{
+                  console.log(error)
+                })
   }
 
   detectarCambios(){
-    this.formPre.valueChanges.subscribe(valorForm =>{
-      this.base = this.redondear(valorForm.base);
-      this.retencion = valorForm.retencion;
-      this.tipo = valorForm.tipo;
-      if(this.retencion){
-        this.irpf = this.redondear(this.base * -0.15);
-      } else {
-        this.irpf = 0;
-      }
-      this.importe = this.redondear(this.base * this.tipo);
-      this.total = this.redondear(this.base + this.irpf + this.importe);
-      this.formPre.value.irpf = this.formatearMoneda(this.irpf);
-      this.formPre.value.importe = this.formatearMoneda(this.importe);
-      this.formPre.value.total = this.formatearMoneda(this.total);
-    })
- 
-  }
-
-  
-  registrarPre(){
-    this.presupuesto = this.guardarPre();
-    this.presupuestosService.postPresupuesto(this.presupuesto)
-            .subscribe((res:any)=>{
-              console.log(res);
+    this.formPre.valueChanges
+            .subscribe(valor=>{
+              var importe = 0;
+              var j;
+              for(j=0; j < valor.items.length; j++){
+                var cantidad = valor.items[j].cantidad;
+                var precio = valor.items[j].precio;
+                this.formPre.value.items[j].importe = cantidad * precio;               
+              }
+              var suma = 0;
+              var i;
+              for(i=0; i < valor.items.length; i++){
+                suma = suma + valor.items[i].importe;
+              }
+              this.formPre.value.suma = suma;
             })
-    this.iniciarFormulario();
-  }
-
-  guardarPre(){
-    const guardarPre = {
-      proveedor: this.formPre.get('cliente').value,
-      cif: this.formPre.get('cif').value,
-      fecha: this.formPre.get('fecha').value,
-      concepto: this.formPre.get('concepto').value,
-      base: this.formPre.get('base').value,
-      retencion: this.formPre.get('retencion').value,
-      tipo: this.formPre.get('tipo').value,
-      irpf: this.formPre.get('irpf').value,
-      importe: this.formPre.get('importe').value,
-      total: this.formPre.get('total').value,
-      //fechaRegistro: new Date()
-    }
-    return guardarPre;
   }
 
 }
