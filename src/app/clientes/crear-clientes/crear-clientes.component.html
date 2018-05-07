@@ -1,27 +1,33 @@
 <div class="barra-fija">
-  <div title="Clientes" 
-        routerLink="/listado-clientes">
-      <i class="fas fa-address-book"></i>
+  <div title="Clientes" routerLink="/listado-clientes">
+    <i class="fas fa-address-book"></i>
   </div>
-  <div title="Presupuestos" 
-        routerLink="/listado-presupuestos">
-      <i class="fas fa-money-bill-alt"></i>
+  <div title="Presupuestos" routerLink="/listado-presupuestos">
+    <i class="fas fa-money-bill-alt"></i>
+  </div>
+  <div title="Articulos" routerLink="/listado-articulos">
+    <i class="fas fa-archive"></i>
   </div>
 </div>
 <div class="col-md-12">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-      <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
-      <li class="breadcrumb-item"><a routerLink="/listado-ventas">Clientes</a></li>
+      <li class="breadcrumb-item">
+        <a routerLink="/inicio">Inicio</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/ventas">Ventas</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/listado-ventas">Clientes</a>
+      </li>
       <li class="breadcrumb-item active" aria-current="page">Añadir cliente</li>
     </ol>
   </nav>
 </div>
 <div class="col-md-12 titulo">
   <span>Añadir nuevo cliente</span>
-  <button class="btn btn-primary"
-          routerLink="/listado-clientes">
+  <button class="btn btn-primary" routerLink="/listado-clientes">
     <strong>Volver</strong>
   </button>
 </div>
@@ -29,53 +35,35 @@
   <div class="formulario">
     <form [formGroup]="clienteForm" (ngSubmit)="crearCliente()">
       <div class="form-group">
-        <input type="text" class="form-control"
-                formControlName="nombre"
-                placeholder="Nombre">
+        <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control"
-                formControlName="cif"
-                placeholder="CIF" #cif>
+        <input type="text" class="form-control" formControlName="cif" placeholder="CIF" #cif>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control"
-                formControlName="domicilio"
-                placeholder="Dirección">
+        <input type="text" class="form-control" formControlName="domicilio" placeholder="Dirección">
       </div>
       <div class="form-group">
-        <input type="number" class="form-control"
-               formControlName="cp"
-                placeholder="Código Postal">
+        <input type="number" class="form-control" formControlName="cp" placeholder="Código Postal">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control"
-              formControlName="localidad"
-              placeholder="Localidad">
+        <input type="text" class="form-control" formControlName="localidad" placeholder="Localidad">
       </div>
       <div class="form-group">
-        <select class="form-control"
-                formControlName="provincia">
-          <option *ngFor="let provincia of provincias"
-                [value]="provincia">
-                {{provincia}} 
+        <select class="form-control" formControlName="provincia">
+          <option *ngFor="let provincia of provincias" [value]="provincia">
+            {{provincia}}
           </option>
         </select>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control"
-                formControlName="telefono"
-                placeholder="Teléfono">
+        <input type="text" class="form-control" formControlName="telefono" placeholder="Teléfono">
       </div>
       <div class="form-group">
-        <input type="email" class="form-control"
-                formControlName="email"
-                placeholder="Email">
+        <input type="email" class="form-control" formControlName="email" placeholder="Email">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control"
-                formControlName="contacto"
-                placeholder="Contacto">
+        <input type="text" class="form-control" formControlName="contacto" placeholder="Contacto">
       </div>
       <button type="submit" class="btn btn-primary">
         <span *ngIf="!enviando">Añadir cliente</span>
@@ -83,15 +71,10 @@
           <i class="fas fa-spinner fa-pulse"></i>
         </span>
       </button>
-      <button routerLink="/listado-clientes" 
-              class="btn btn-danger">
-          Cancelar
+      <button routerLink="/listado-clientes" class="btn btn-danger">
+        Cancelar
       </button>
     </form>
-    <p class="alert alert-warning"
-       [@alerta]="estadoAlerta">{{mensaje}}</p>
+    <p class="alert alert-warning" [@alerta]="estadoAlerta">{{mensaje}}</p>
   </div>
 </div>
-
-
-
