@@ -34,6 +34,7 @@ import { SesionesComponent } from './autenticacion/sesiones/sesiones.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { CrearArticuloComponent } from './articulos/crear-articulo/crear-articulo.component';
 import { ListadoArticulosComponent } from './articulos/listado-articulos/listado-articulos.component';
+import { ArticulosService } from './servicios/articulos.service';
 
 
 const rutas:Routes = [
@@ -97,7 +98,7 @@ const rutas:Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [ProveedoresService, FacturasService, AutenticacionService, ClientesService, PresupuestosService, AutenticacionGuard],
+  providers: [ProveedoresService, FacturasService, AutenticacionService, ClientesService, PresupuestosService, AutenticacionGuard, ArticulosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

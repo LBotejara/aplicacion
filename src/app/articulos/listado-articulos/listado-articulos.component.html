@@ -17,14 +17,38 @@ routerLink="/listado-articulos">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
       <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Artículos</li>
+      <li class="breadcrumb-item active" aria-current="page">Articulos</li>
     </ol>
   </nav>
 </div>
 <div class="col-md-12 titulo">
-  <span>Artículos</span>
+  <span>Articulos</span>
   <button class="btn btn-primary"
           routerLink="/crear-articulo">
       <i class="fas fa-plus-circle"></i>
   </button>
+</div>
+<div class="col-md-12">
+  <table class="table table-bordered table-striped tabla-facturas">
+    <tr>
+      <th>Referencia</th>
+      <th>Precio</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let articulo of articulos">
+      <td>{{articulo.referencia}}</td>
+      <td>{{articulo.precio}</td>
+      <td>
+        <button class="btn btn-success"
+          disabled>
+          <i class="fas fa-pen-square"></i>
+        </button>
+        <!-- Button trigger modal -->
+        <button class="btn btn-danger" 
+                disabled>
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
 </div>

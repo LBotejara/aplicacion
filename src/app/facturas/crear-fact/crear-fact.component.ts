@@ -77,7 +77,7 @@ export class CrearFactComponent implements OnInit {
                     }, (error:any)=>{
                       this.mostrarAlerta = true;
                       this.enviando = false;
-                      if(error.error.errores.errors.cif.message){
+                      if (error.error.errores.errors.cif.message){
                         this.mensaje = error.error.errores.errors.cif.message;
                         this.cifRef.nativeElement.focus(); // focus manda el focus al elemento
                       }
