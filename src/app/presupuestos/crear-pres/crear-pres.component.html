@@ -34,7 +34,8 @@
 <div class="col-md-10 offset-md-1 col-12">
   <div class="formulario">
     <form [formGroup]="formPre">
-      <div class="form-group">
+      <div class="form-row">
+      <div class="form-group col-md-4">
         <label for="cliente">Cliente</label>
         <input type="text" class="form-control" formControlName="cliente" list="clientes">
         <datalist id="clientes">
@@ -43,10 +44,15 @@
           </option>
         </datalist>
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-4">
+          <label for="cif">Cif</label>
+          <input type="text" class="form-control" formControlName="cif" [(ngModel)]="formPre.value.cif" readonly>
+        </div>
+      <div class="form-group col-md-4">
         <label for="fecha">Fecha</label>
         <input type="date" class="form-control" formControlName="fecha">
       </div>
+    </div>
       <div class="form-group">
         <h5>Artículos</h5>
         <hr>
@@ -150,10 +156,11 @@
             Cancelar
           </button>
           <button class="btn btn-primary" (click)="crearPresupuesto()">
-            Añador Presupuesto
+            Añadir Presupuesto
           </button>
         </div>
       </div>
     </form>
   </div>
 </div>
+
