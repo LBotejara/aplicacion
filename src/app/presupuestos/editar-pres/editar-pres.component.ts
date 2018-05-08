@@ -16,7 +16,7 @@ export class EditarPresComponent implements OnInit {
   formPre: FormGroup;
   presupuesto: any;
   clientes: any;
-  articulos: any;
+  articulos: any = []
   id: string;
 
   constructor(private fp: FormBuilder,
@@ -79,6 +79,7 @@ export class EditarPresComponent implements OnInit {
   }
 
   patchForm(){
+    var numero = '000' + this.presupuesto.numero + '/18'
     this.formPre.patchValue({
       cliente: this.presupuesto.cliente,
       cif: this.presupuesto.cif,
@@ -87,7 +88,7 @@ export class EditarPresComponent implements OnInit {
       tipo: this.presupuesto.tipo,
       iva: this.presupuesto.iva,
       total: this.presupuesto.total,
-      numero: this.presupuesto.numero
+      num: numero.slice(-7)
     })
     this.setPresupuestoItems();
   }
@@ -137,15 +138,6 @@ export class EditarPresComponent implements OnInit {
   detectarCambios() {
     this.formPre.valueChanges
       .subscribe(valor => {
-        // var nombreCliente = valor.cliente;
-        // var clienteCargado = this.clientes.find(function(cliente) {
-        //   return cliente.nombre === nombreCliente;
-        // });
-        // if(clienteCargado){
-        //   this.formPre.value.cif = clienteCargado.cif;
-        // } else {
-        //   this.formPre.value.cif = '';
-        // }
         var importe = 0;
         var suma = 0;
         var i;
