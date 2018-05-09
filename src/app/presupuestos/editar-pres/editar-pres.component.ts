@@ -24,10 +24,10 @@ export class EditarPresComponent implements OnInit {
     private clientesService: ClientesService,
     private articulosService: ArticulosService,
     private router: Router,
-    private route: ActivatedRoute){
-      if(!this.articulos){
-        this.articulos = []
-      }
+    private route: ActivatedRoute) {
+      setTimeout(() => {
+        this.detectarCambios();
+      },1000);
     }
 
   ngOnInit() {
@@ -44,13 +44,13 @@ export class EditarPresComponent implements OnInit {
       tipo: 0.21,
       iva: null,
       total: null,
-      numero: null,
+      num: null,
     })
   }
 
-  ngAfterViewChecked() {
-    this.detectarCambios();
-  }
+  // ngAfterViewChecked() {
+  //   this.detectarCambios();
+  // }
 
   cargarDatos() {
     this.clientesService.getTodosClientes()
@@ -148,6 +148,9 @@ export class EditarPresComponent implements OnInit {
           });
           if (articuloCargado) {
             this.formPre.value.items[i].precio = articuloCargado.precio;
+            this.formPre.value.items[i].importe = this.redondear(valor.items[i].cantidad * this.formPre.value.items[i].precio);
+          } else {
+            this.formPre.value.items[0] = 0;
             this.formPre.value.items[i].importe = this.redondear(valor.items[i].cantidad * this.formPre.value.items[i].precio);
           }
           suma = suma + valor.items[i].importe;

@@ -13,7 +13,7 @@ export class ClientesService {
     constructor(private http: HttpClient) { }
 
     getTodosClientes(){
-      let url = 'http://localhost:3000/clientes';
+      let url = 'http://localhost:3000/cliente';
       return this.http.get(url)
                     .map( (resp:any) => {
                       return resp;
@@ -21,7 +21,7 @@ export class ClientesService {
     }  
 
     getClientes(nombre){
-      let url = 'http://localhost:3000/clientes/nombre/' + nombre;
+      let url = 'http://localhost:3000/cliente/nombre/' + nombre;
       return this.http.get(url)
                     .map( (resp:any) => {
                       return resp;
@@ -29,7 +29,7 @@ export class ClientesService {
     }
 
     getClientesLocalidad(localidad){
-      let url = 'http://localhost:3000/clientes/localidad/' + localidad;
+      let url = 'http://localhost:3000/cliente/localidad/' + localidad;
       return this.http.get(url)
                     .map( (resp:any) => {
                       return resp;
@@ -37,7 +37,7 @@ export class ClientesService {
     }
 
     getClientesNombreLocalidad(consulta){
-      let url = 'http://localhost:3000/clientes/mixto/' + consulta.nombre + '/' + consulta.localidad;
+      let url = 'http://localhost:3000/cliente/mixto/' + consulta.nombre + '/' + consulta.localidad;
       return this.http.get(url)
                     .map( (resp:any) => {
                       return resp;
@@ -45,7 +45,7 @@ export class ClientesService {
     }
     
     getClientesId(id){
-      let url = 'http://localhost:3000/clientes/';
+      let url = 'http://localhost:3000/cliente/';
       return this.http.get(url + id)
                         .map( (resp:any) => {
                           return resp;
@@ -53,7 +53,7 @@ export class ClientesService {
     }
 
     postCliente(cliente){
-      let url = "http://localhost:3000/clientes";
+      let url = "http://localhost:3000/cliente";
       return this.http.post(url, cliente)
                     .map( (resp:any) => {
                       console.log(resp)
@@ -62,7 +62,7 @@ export class ClientesService {
     }
 
     putCliente(id, cliente){
-      let url = 'http://localhost:3000/clientes/';
+      let url = 'http://localhost:3000/cliente/';
       return this.http.put(url+id, cliente)
                     .map( (resp:any) => {
                       return resp;
@@ -70,7 +70,7 @@ export class ClientesService {
     }
 
     deleteCliente(id){
-      let url = 'http://localhost:3000/clientes/';
+      let url = 'http://localhost:3000/cliente/';
       return this.http.delete(url+id)
                       .map( (resp:any) => {
                         return resp;

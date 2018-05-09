@@ -39,6 +39,7 @@ export class ListadoPresComponent implements OnInit {
   borrarPresupuesto(){
     this.presupuestosService.deletePresupuesto(this.id)
                 .subscribe((resp:any)=>{
+                  this.presupuestos = [];
                   this.cargarPresupuestos();
                 },(error:any)=>{
                   console.log(error);
