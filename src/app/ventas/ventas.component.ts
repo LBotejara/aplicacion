@@ -14,6 +14,7 @@ export class VentasComponent implements OnInit {
   }
 
   presupuestos:any;
+  totalPorCliente:any;
   ptosPrMes:any;
   ptosSgMes:any;
   ptosTrMes:any;
@@ -29,11 +30,13 @@ export class VentasComponent implements OnInit {
   trMes:string = 'Junio';
   labelTrimestre:string = 'Presupuestos 2T';
   chartPtosTrimestre:any = [];
+  chartTotalesCliente:any = [];
 
   constructor(private presupuestosService: PresupuestosService) { }
 
   ngOnInit() {
     this.cargarGraficoPresupuestos();
+    this.cargarGraficoCliente();
   }
 
   cargarGraficoPresupuestos(){
@@ -71,6 +74,33 @@ export class VentasComponent implements OnInit {
                 },(error)=>{
                   console.log(error)
                 })
+  }
+
+  cargarGraficoCliente(){
+    this.presupuestosService.getTotalesPorCliente()
+              .subscribe((resp:any)=>{
+                this.totalPorCliente = resp.datos;
+                let clientes = [];
+                let totales = [];
+                this.totalPorCliente.forEach(element=>{
+                  clientes.push(element._id.cliente);
+                  totales.push(element.total);
+                })
+                this.chartTotalesCliente = new Chart('grafico2',{
+                  type: 'pie',
+                  data: {
+                    labels: clientes,
+                    datasets:[
+                      {
+                        backgroundColor: ['#d9534f','#5cb85c','#428bca','#ca6242','#ca42b8'],
+                        data: totales
+                      }
+                    ]
+                  }
+                })
+              },(error)=>{
+                console.log(error)
+              })
   }
 
   primerTrimestre(){

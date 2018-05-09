@@ -17,6 +17,14 @@ export class PresupuestosService {
                     return resp;
                   });
   }
+
+  getTotalesPorCliente(){
+    let url = 'http://localhost:3000/presupuesto/cliente';
+    return this.http.get(url)
+                  .map( (resp:any) => {
+                    return resp;
+                  });
+  }
   
   getPresupuestoId(id){
     let url = 'http://localhost:3000/presupuesto/';
